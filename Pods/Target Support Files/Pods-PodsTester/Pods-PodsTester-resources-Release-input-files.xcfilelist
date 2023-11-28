@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-PodsTester/Pods-PodsTester-resources.sh
+${PODS_ROOT}/PureLiveSDK/PureLiveSDKResources.bundle
+${PODS_ROOT}/PureLiveSDK/PureLiveSDKOnDeviceResources.bundle

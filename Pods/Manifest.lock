@@ -1,0 +1,63 @@
+PODS:
+  - Alamofire (5.8.0)
+  - Kingfisher (7.9.1)
+  - lottie-ios (4.3.3)
+  - PureLiveSDK (6.4.0.1):
+    - PureLiveSDK/Full (= 6.4.0.1)
+    - TensorFlowLiteC (= 2.7.0)
+  - PureLiveSDK/Full (6.4.0.1):
+    - TensorFlowLiteC (= 2.7.0)
+  - SwiftMessages (9.0.8):
+    - SwiftMessages/App (= 9.0.8)
+  - SwiftMessages/App (9.0.8)
+  - SwiftyTesseract (3.1.3)
+  - TensorFlowLiteC (2.7.0):
+    - TensorFlowLiteC/Core (= 2.7.0)
+  - TensorFlowLiteC/Core (2.7.0)
+  - TensorFlowLiteSwift (2.7.0):
+    - TensorFlowLiteSwift/Core (= 2.7.0)
+  - TensorFlowLiteSwift/Core (2.7.0):
+    - TensorFlowLiteC (= 2.7.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Kingfisher (~> 7.0)
+  - lottie-ios
+  - PureLiveSDK (from `https://gitlab.com/purelive/purelive-ios-sdk.git`, tag `6.4.0.1`)
+  - SwiftMessages
+  - SwiftyTesseract (~> 3.1.3)
+  - TensorFlowLiteSwift (~> 2.7.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Kingfisher
+    - lottie-ios
+    - SwiftMessages
+    - SwiftyTesseract
+    - TensorFlowLiteC
+    - TensorFlowLiteSwift
+
+EXTERNAL SOURCES:
+  PureLiveSDK:
+    :git: https://gitlab.com/purelive/purelive-ios-sdk.git
+    :tag: 6.4.0.1
+
+CHECKOUT OPTIONS:
+  PureLiveSDK:
+    :git: https://gitlab.com/purelive/purelive-ios-sdk.git
+    :tag: 6.4.0.1
+
+SPEC CHECKSUMS:
+  Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
+  Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
+  lottie-ios: 25e7b2675dad5c3ddad369ac9baab03560c5bfdd
+  PureLiveSDK: a8e0d7445146db8da27b393706f7a7e43350b765
+  SwiftMessages: 3601317b44ed2e1a54e2c6901b4362a364bf4862
+  SwiftyTesseract: 1f3d96668ae92dc2208d9842c8a59bea9fad2cbb
+  TensorFlowLiteC: 50d75ed3640c15dcfbaf88ca4326297b445e00a1
+  TensorFlowLiteSwift: fe99748dc3d58ae08bd2ff38658e3ade7038670f
+
+PODFILE CHECKSUM: 3637047120fb03422b59028b325862f3c80d3559
+
+COCOAPODS: 1.14.2
