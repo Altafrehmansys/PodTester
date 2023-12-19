@@ -512,10 +512,10 @@ SWIFT_CLASS("_TtC9eMoneySDK12CustomSwitch")
 @end
 
 
+
 @interface CustomSwitch (SWIFT_EXTENSION(eMoneySDK))
 - (void)layoutSubviews;
 @end
-
 
 
 @class UITouch;
@@ -1571,13 +1571,6 @@ SWIFT_AVAILABILITY(ios_app_extension,unavailable)
 
 SWIFT_AVAILABILITY(ios_app_extension,unavailable)
 @interface IQKeyboardManager (SWIFT_EXTENSION(eMoneySDK))
-/// reloadInputViews to reload toolbar buttons enable/disable state on the fly Enhancement ID #434.
-- (void)reloadInputViews;
-@end
-
-
-SWIFT_AVAILABILITY(ios_app_extension,unavailable)
-@interface IQKeyboardManager (SWIFT_EXTENSION(eMoneySDK))
 @property (nonatomic) BOOL enableDebugging;
 /// @warning Use below methods to completely enable/disable notifications registered by library internally.
 /// Please keep in mind that library is totally dependent on NSNotification of UITextField, UITextField, Keyboard etc.
@@ -1585,6 +1578,13 @@ SWIFT_AVAILABILITY(ios_app_extension,unavailable)
 /// You should use below methods at your own risk.
 - (void)registerAllNotifications;
 - (void)unregisterAllNotifications;
+@end
+
+
+SWIFT_AVAILABILITY(ios_app_extension,unavailable)
+@interface IQKeyboardManager (SWIFT_EXTENSION(eMoneySDK))
+/// reloadInputViews to reload toolbar buttons enable/disable state on the fly Enhancement ID #434.
+- (void)reloadInputViews;
 @end
 
 
@@ -1849,6 +1849,16 @@ SWIFT_CLASS("_TtC9eMoneySDK24OnboardingViewController")
 
 
 
+IB_DESIGNABLE
+SWIFT_CLASS("_TtC9eMoneySDK13PrimaryButton")
+@interface PrimaryButton : UIButton
+- (void)layoutSubviews;
+@property (nonatomic, getter=isEnabled) BOOL enabled;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
 SWIFT_CLASS("_TtC9eMoneySDK34RegisterMobileNumberViewController")
 @interface RegisterMobileNumberViewController : BaseViewController
 - (void)viewDidLoad;
@@ -2070,6 +2080,7 @@ SWIFT_CLASS("_TtC9eMoneySDK9ToolTipVC")
 
 
 
+
 SWIFT_AVAILABILITY(ios_app_extension,unavailable)
 @interface UIImage (SWIFT_EXTENSION(eMoneySDK))
 + (UIImage * _Nullable)keyboardLeftImage SWIFT_WARN_UNUSED_RESULT;
@@ -2082,11 +2093,11 @@ SWIFT_AVAILABILITY(ios_app_extension,unavailable)
 
 
 
+
+
 @interface UILabel (SWIFT_EXTENSION(eMoneySDK))
 - (void)cstmlayoutSubviews;
 @end
-
-
 
 
 

@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
-// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name eMoneySDK
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name eMoneySDK
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import AVFoundation
 import Alamofire
@@ -701,7 +701,6 @@ public enum CS {
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class OnboardingViewController : UIKit.UIViewController {
   @_Concurrency.MainActor(unsafe) public var onSuccess: ((Swift.String) -> ())?
   @_Concurrency.MainActor(unsafe) public var onFailure: ((Swift.String, Swift.String) -> ())?
-  @_Concurrency.MainActor(unsafe) public var receivedTheme: eMoneySDK.EWalletTheme?
   @_Concurrency.MainActor(unsafe) public var clientID: Swift.String?
   @_Concurrency.MainActor(unsafe) public var partnerName: Swift.String?
   @_Concurrency.MainActor(unsafe) public var msisdn: Swift.String?
@@ -713,6 +712,13 @@ public enum CS {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func prepare(for segue: UIKit.UIStoryboardSegue, sender: Any?)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class RegisterMobileNumberViewController : eMoneySDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
 }
 extension eMoneySDK.AES : eMoneySDK.Cryptors {
   @inlinable final public func makeEncryptor() throws -> any eMoneySDK.Cryptor & eMoneySDK.Updatable {
@@ -1249,13 +1255,6 @@ public class AdvancedPageControlDrawerParent {
   public init(numberOfPages: Swift.Int? = 5, height: CoreFoundation.CGFloat? = 16, width: CoreFoundation.CGFloat? = 16, space: CoreFoundation.CGFloat? = 16, raduis: CoreFoundation.CGFloat? = 16, currentItem: CoreFoundation.CGFloat? = 0, dotsColor: UIKit.UIColor? = UIColor.lightGray, isBordered: Swift.Bool = false, borderColor: UIKit.UIColor = .lightGray, borderWidth: CoreFoundation.CGFloat = 1)
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class LoginViewController : eMoneySDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
 @available(*, renamed: "Digest")
 public typealias Hash = eMoneySDK.Digest
 public struct Digest {
@@ -1346,27 +1345,6 @@ extension UIKit.UIView {
   @_Concurrency.MainActor(unsafe) public func roundCorners(corners: UIKit.UIRectCorner, radius: CoreFoundation.CGFloat)
   @_Concurrency.MainActor(unsafe) public func addGradient(colors: [UIKit.UIColor], locations: [Foundation.NSNumber]?, startPoint: CoreFoundation.CGPoint, endPoint: CoreFoundation.CGPoint, cornerRadius: CoreFoundation.CGFloat = 16)
 }
-public struct CBC : eMoneySDK.BlockMode {
-  public enum Error : Swift.Error {
-    case invalidInitializationVector
-    public static func == (a: eMoneySDK.CBC.Error, b: eMoneySDK.CBC.Error) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
-  public let options: eMoneySDK.BlockModeOption
-  public let customBlockSize: Swift.Int?
-  public init(iv: Swift.Array<Swift.UInt8>)
-  public func worker(blockSize: Swift.Int, cipherOperation: @escaping eMoneySDK.CipherOperationOnBlock, encryptionOperation: @escaping eMoneySDK.CipherOperationOnBlock) throws -> any eMoneySDK.CipherModeWorker
-}
-@available(iOSApplicationExtension, unavailable)
-@objc extension UIKit.UIView {
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func viewContainingController() -> UIKit.UIViewController?
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func topMostController() -> UIKit.UIViewController?
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func parentContainerViewController() -> UIKit.UIViewController?
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func superviewOfClassType(_ classType: UIKit.UIView.Type, belowView: UIKit.UIView? = nil) -> UIKit.UIView?
-}
 @_hasMissingDesignatedInitializers public class LoginModel {
   final public let result: Swift.String?, userToken: Swift.String?, fullName: Swift.String?
   final public let isDigitalKyc: Swift.Bool?
@@ -1394,6 +1372,27 @@ public struct CBC : eMoneySDK.BlockMode {
   public var displayAppRating: Swift.Bool?
   final public let data: eMoneySDK.LoginModel
   @objc deinit
+}
+public struct CBC : eMoneySDK.BlockMode {
+  public enum Error : Swift.Error {
+    case invalidInitializationVector
+    public static func == (a: eMoneySDK.CBC.Error, b: eMoneySDK.CBC.Error) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public let options: eMoneySDK.BlockModeOption
+  public let customBlockSize: Swift.Int?
+  public init(iv: Swift.Array<Swift.UInt8>)
+  public func worker(blockSize: Swift.Int, cipherOperation: @escaping eMoneySDK.CipherOperationOnBlock, encryptionOperation: @escaping eMoneySDK.CipherOperationOnBlock) throws -> any eMoneySDK.CipherModeWorker
+}
+@available(iOSApplicationExtension, unavailable)
+@objc extension UIKit.UIView {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func viewContainingController() -> UIKit.UIViewController?
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func topMostController() -> UIKit.UIViewController?
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func parentContainerViewController() -> UIKit.UIViewController?
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func superviewOfClassType(_ classType: UIKit.UIView.Type, belowView: UIKit.UIView? = nil) -> UIKit.UIView?
 }
 @_inheritsConvenienceInitializers public class InfiniteDrawer : eMoneySDK.AdvancedPageControlDrawerParentWithIndicator, eMoneySDK.AdvancedPageControlDraw {
   public func draw(_ rect: CoreFoundation.CGRect)
@@ -1646,6 +1645,18 @@ extension eMoneySDK.BaseInputView : UIKit.UITextInputTokenizer {
 }
 extension eMoneySDK.HMAC {
   convenience public init(key: Swift.String, variant: eMoneySDK.HMAC.Variant = .md5) throws
+}
+public class EWalletSDK {
+  public init(configuration: eMoneySDK.EWalletConfiguration)
+  public func startWithOnboarding(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((Swift.String) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
+  public func startWithAddMoney(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((Swift.String) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
+  public func startForgetPin(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((Swift.String) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
+  public func startChangePin(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((Swift.String) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
+  public func startUpdateEmiratesId(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((Swift.String) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
+  public func login(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((eMoneySDK.BaseResponse) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
+  public func enableLogs(_ isEnable: Swift.Bool)
+  public func setSDKLanguage(_ language: eMoneySDK.SDKLanguage)
+  @objc deinit
 }
 @_inheritsConvenienceInitializers @available(iOSApplicationExtension, unavailable)
 @objc @_Concurrency.MainActor(unsafe) open class IQBarButtonItem : UIKit.UIBarButtonItem {
@@ -2180,7 +2191,7 @@ extension eMoneySDK.AES : eMoneySDK.Cipher {
     return out
   }
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class RegisterMobileNumberViewController : eMoneySDK.BaseViewController {
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class LoginViewController : eMoneySDK.BaseViewController {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
@@ -2422,6 +2433,13 @@ extension Swift.String {
     try self.bytes.authenticate(with: authenticator).toHexString()
   }
 }
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class SplashViewController : eMoneySDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) public func didInternetErrorTryAgainTapped()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
 @_inheritsConvenienceInitializers public class ThinWormHeadsDrawer : eMoneySDK.AdvancedPageControlDrawerParentWithIndicator, eMoneySDK.AdvancedPageControlDraw {
   public func draw(_ rect: CoreFoundation.CGRect)
   override public init(numberOfPages: Swift.Int? = super, height: CoreFoundation.CGFloat? = super, width: CoreFoundation.CGFloat? = super, space: CoreFoundation.CGFloat? = super, raduis: CoreFoundation.CGFloat? = super, currentItem: CoreFoundation.CGFloat? = super, indicatorColor: UIKit.UIColor? = super, dotsColor: UIKit.UIColor? = super, isBordered: Swift.Bool = super, borderColor: UIKit.UIColor = super, borderWidth: CoreFoundation.CGFloat = super, indicatorBorderColor: UIKit.UIColor = super, indicatorBorderWidth: CoreFoundation.CGFloat = super)
@@ -2617,6 +2635,16 @@ extension UIKit.UIViewController {
 extension eMoneySDK.ToolTipVC : UIKit.UIPopoverPresentationControllerDelegate {
   @_Concurrency.MainActor(unsafe) @objc dynamic public func adaptivePresentationStyle(for controller: UIKit.UIPresentationController) -> UIKit.UIModalPresentationStyle
 }
+@objc @_inheritsConvenienceInitializers @IBDesignable @_Concurrency.MainActor(unsafe) public class PrimaryButton : UIKit.UIButton {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public var isEnabled: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
 @objc @_inheritsConvenienceInitializers @IBDesignable @_Concurrency.MainActor(unsafe) public class BaseButton : UIKit.UIButton {
   @_Concurrency.MainActor(unsafe) convenience public init(frameRect: CoreFoundation.CGRect)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
@@ -2660,16 +2688,37 @@ extension eMoneySDK.ToolTipVC : UIKit.UIPopoverPresentationControllerDelegate {
   }
   @objc deinit
 }
-public struct EWalletTheme {
-  public var buttonBackgroundColor: UIKit.UIColor?
-  public var buttonTextColor: UIKit.UIColor?
-  public var buttonFont: UIKit.UIFont?
-  public var toolBarTitleColor: UIKit.UIColor?
-  public var toolBarLabelColor: UIKit.UIColor?
-  public var toolBarIconColor: UIKit.UIColor?
-  public var checkBoxColor: UIKit.UIColor?
-  public var segmentBarColor: UIKit.UIColor?
-  public init(buttonBackgroundColor: UIKit.UIColor? = nil, buttonTextColor: UIKit.UIColor? = nil, buttonFont: UIKit.UIFont? = nil, toolBarTitleColor: UIKit.UIColor? = nil, toolBarLabelColor: UIKit.UIColor? = nil, toolBarIconColor: UIKit.UIColor? = nil, checkBoxColor: UIKit.UIColor? = nil, segmentBarColor: UIKit.UIColor? = nil)
+public class EWalletTheme {
+  public func setContentTheme(_ contentTheme: eMoneySDK.EContentTheme) -> eMoneySDK.EWalletTheme
+  public func setStatusTheme(_ statusTheme: eMoneySDK.EStatusTheme) -> eMoneySDK.EWalletTheme
+  public func setBackgroundColor(_ color: UIKit.UIColor) -> eMoneySDK.EWalletTheme
+  public func setEditTextTheme(editTextTheme: eMoneySDK.EWalletEditTextTheme) -> eMoneySDK.EWalletTheme
+  public func setToolbarTheme(_ theme: eMoneySDK.EWalletToolbarTheme) -> eMoneySDK.EWalletTheme
+  public func setPrimaryButtonTheme(_ primaryButtonTheme: eMoneySDK.EWalletButtonTheme) -> eMoneySDK.EWalletTheme
+  public func setSegmentBarTheme(_ segmentBarTheme: eMoneySDK.EWalletSegmentBarTheme) -> eMoneySDK.EWalletTheme
+  public func setActivityIndicatorColor(_ color: UIKit.UIColor) -> eMoneySDK.EWalletTheme
+  public func setListBackgroundColor(_ color: UIKit.UIColor) -> eMoneySDK.EWalletTheme
+  public func setVisibilityToggleTextColor(_ color: UIKit.UIColor) -> eMoneySDK.EWalletTheme
+  public init()
+  @objc deinit
+}
+public struct EContentTheme {
+  public init(headingColor: UIKit.UIColor?, notesColor: UIKit.UIColor?)
+}
+public struct EStatusTheme {
+  public init(errorTextColor: UIKit.UIColor?, errorIconColor: UIKit.UIColor?, successColor: UIKit.UIColor?, warningColor: UIKit.UIColor? = nil)
+}
+public struct EWalletButtonTheme {
+  public init(backgroundColor: (primary: UIKit.UIColor, secondary: UIKit.UIColor), textColor: UIKit.UIColor, font: UIKit.UIFont? = nil)
+}
+public struct EWalletEditTextTheme {
+  public init(activeTextColor: UIKit.UIColor, inActiveTextColor: UIKit.UIColor, activeBorderColor: UIKit.UIColor, inActiveBorderColor: UIKit.UIColor, hintColor: UIKit.UIColor, separatorColor: UIKit.UIColor)
+}
+public struct EWalletToolbarTheme {
+  public init(handlerColor: UIKit.UIColor, primaryTitleColor: UIKit.UIColor, secondaryTitleColor: UIKit.UIColor)
+}
+public struct EWalletSegmentBarTheme {
+  public init(selectedColor: UIKit.UIColor, unSelectedColor: UIKit.UIColor)
 }
 final public class Poly1305 : eMoneySDK.Authenticator {
   public enum Error : Swift.Error {
@@ -2697,6 +2746,7 @@ public enum SDKLanguage {
 public enum Environment : Swift.String {
   case staging
   case production
+  case preprod
   public init?(rawValue: Swift.String)
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
@@ -2704,19 +2754,7 @@ public enum Environment : Swift.String {
   }
 }
 public struct EWalletConfiguration {
-  public init(partnerName: Swift.String, clientId: Swift.String, environment: eMoneySDK.Environment, theme: eMoneySDK.EWalletTheme?)
-}
-public class EWalletSDK {
-  public init(configuration: eMoneySDK.EWalletConfiguration)
-  public func startWithOnboarding(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((Swift.String) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
-  public func startWithAddMoney(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((Swift.String) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
-  public func startForgetPin(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((Swift.String) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
-  public func startChangePin(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((Swift.String) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
-  public func startUpdateEmiratesId(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((Swift.String) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
-  public func login(in controller: UIKit.UIViewController, msisdn: Swift.String, onSuccess: ((eMoneySDK.BaseResponse) -> ())?, onFailure: ((Swift.String, Swift.String) -> ())?)
-  public func enableLogs(_ isEnable: Swift.Bool)
-  public func setSDKLanguage(_ language: eMoneySDK.SDKLanguage)
-  @objc deinit
+  public init(partnerName: Swift.String, partenerUserId: Swift.Int?, clientId: Swift.String, environment: eMoneySDK.Environment, theme: eMoneySDK.EWalletTheme?)
 }
 public enum EWalletErrorCode : Swift.String {
   case ERROR
@@ -2764,13 +2802,6 @@ extension eMoneySDK.CS.BigInt {
 @_inheritsConvenienceInitializers public class ScrollingDrawer : eMoneySDK.AdvancedPageControlDrawerParentWithIndicator, eMoneySDK.AdvancedPageControlDraw {
   public func draw(_ rect: CoreFoundation.CGRect)
   override public init(numberOfPages: Swift.Int? = super, height: CoreFoundation.CGFloat? = super, width: CoreFoundation.CGFloat? = super, space: CoreFoundation.CGFloat? = super, raduis: CoreFoundation.CGFloat? = super, currentItem: CoreFoundation.CGFloat? = super, indicatorColor: UIKit.UIColor? = super, dotsColor: UIKit.UIColor? = super, isBordered: Swift.Bool = super, borderColor: UIKit.UIColor = super, borderWidth: CoreFoundation.CGFloat = super, indicatorBorderColor: UIKit.UIColor = super, indicatorBorderWidth: CoreFoundation.CGFloat = super)
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class SplashViewController : eMoneySDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) public func didInternetErrorTryAgainTapped()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 extension Swift.UInt64 {

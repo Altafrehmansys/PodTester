@@ -333,7 +333,8 @@
             "pin_instructions_first" : "الحد الأدنى 4 دبوس الحد الأقصى 8 أحرف",
             "saved_cards" : "البطاقات المحفوظة",
             "change_pin" : "تغيير رقم التعريف الشخصي",
-            "selfi_attempt_msg": "%d من أصل %d محاولة متبقية"
+            "selfi_attempt_msg": "%d من أصل %d محاولة متبقية",
+            "transaction_id" : "رقم المعاملة"
           }
     }
 }

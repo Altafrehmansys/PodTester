@@ -309,8 +309,8 @@
             "pin_instructions_first" : "Minimum 4 maximum 8 character pin",
             "saved_cards" : "Saved cards",
             "change_pin" : "Change PIN",
-            "selfi_attempt_msg": "%d out of %d attempts remaining"
-
+            "selfi_attempt_msg": "%d out of %d attempts remaining",
+            "transaction_id" : "Transaction Id"
           }
     }
 }

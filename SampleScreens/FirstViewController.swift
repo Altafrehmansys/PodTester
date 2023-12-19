@@ -68,7 +68,7 @@ class FirstViewController: BaseViewController {
 //    }
 //}
 extension UIImage {
-    convenience init?(named name: String) {
-        self.init(named: name, in: Bundle(identifier: "com.prodFramework.TesterSDKSampler")!, compatibleWith: nil)
-    }
+//    convenience init?(named name: String) {
+//        self.init(named: name, in: Bundle(identifier: "com.prodFramework.TesterSDKSampler")!, compatibleWith: nil)
+//    }
 }
